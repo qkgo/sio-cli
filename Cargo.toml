@@ -10,6 +10,8 @@ serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
 anyhow = "1.0"
 structopt = "0.3"
+clap = "3.0.0-beta.5"
+
 
 [[bin]]
 name = "rust_socketio_cli"
