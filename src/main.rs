@@ -17,7 +17,6 @@ async fn main() {
     let opt = Opt::from_args();
     let test_url = opt.path;
 
-  
     let start_dial = Instant::now();
     let sio_client = ClientBuilder::new(test_url)
       .namespace("/")
@@ -28,11 +27,8 @@ async fn main() {
      .on("error", |err, _| eprintln!("Error: {:#?}", err))
      .connect()
      .expect("Connection failed");
- 
-  
-
+     
      sio_client.disconnect().expect("Disconnect failed");
 
-
-     sleep(Duration::from_secs(25)).await; // 等待 2 秒以确保结果输出
+     sleep(Duration::from_secs(25)).await;
 }
