@@ -27,4 +27,4 @@ jobs:
         args: --release
 
     - name: Display build size
-      run: du -sh target/release/socketio_perf_test
+      run: du -sh target/release/rust_socketio_cli
