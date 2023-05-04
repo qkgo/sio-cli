@@ -9,7 +9,6 @@ use tokio::runtime::Runtime;
 
 #[tokio::main]
 async fn main() {
-    // 获取命令行参数
     let args: Vec<String> = env::args().collect();
     if args.len() < 2 {
         println!("Usage: socketio_perf_test <test_url>");
@@ -62,5 +61,5 @@ async fn main() {
     });
 
 
-    // sleep(Duration::from_secs(2)).await; // 等待 2 秒以确保结果输出
+    // sleep(Duration::from_secs(2)).await;
 }
