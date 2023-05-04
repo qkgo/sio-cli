@@ -1,46 +1,58 @@
-use clap::{App, Arg};
-use rust_socketio::{Client, SocketBuilder};
+use rust_socketio::{SocketBuilder, ClientBuilder, Payload, RawClient};
+use serde_json::json;
+use std::env;
 use std::time::Instant;
-use tokio::runtime::Builder;
+use tokio::time::sleep;
+use std::time::Duration;
+use structopt::StructOpt;
+use tokio::runtime::Runtime;
 
-async fn measure_connect_time(path: &str) -> Result<std::time::Duration, String> {
-    let builder = SocketBuilder::new(path).expect("Error creating socket builder");
 
-    let start_time = Instant::now();
-    let client = builder.connect().await.map_err(|e| e.to_string())?;
-
-    let connect_duration = start_time.elapsed();
-    Ok(connect_duration)
+#[derive(StructOpt, Debug)]
+#[structopt(name = "socketio-perf-test")]
+struct Opt {
+    #[structopt(short, long, help = "Test path")]
+    path: String,
 }
 
-fn main() {
-    let matches = App::new("Socket.io Performance Test")
-        .version("0.1")
-        .author("Your Name <your.email@example.com>")
-        .about("Measures Socket.io connection time")
-        .arg(
-            Arg::new("path")
-                .about("Path to the Socket.io server")
-                .required(true)
-                .takes_value(true)
-                .index(1),
-        )
-        .get_matches();
 
-    let path = matches.value_of("path").unwrap();
-    let rt = Builder::new_current_thread()
-        .enable_all()
-        .build()
-        .expect("Error building runtime");
-
-    let result = rt.block_on(measure_connect_time(path));
-
-    match result {
-        Ok(duration) => {
-            println!("Connect time: {:?}", duration);
-        }
-        Err(e) => {
-            eprintln!("Error: {}", e);
-        }
+#[tokio::main]
+async fn main() {
+    let args: Vec<String> = env::args().collect();
+    if args.len() < 2 {
+        println!("Usage: socketio_perf_test <test_url>");
+        return;
     }
+
+    let opt = Opt::from_args();
+    let test_url = opt.path;
+
+    let mut rt = Runtime::new().unwrap();
+
+    // test_url.as_str()
+    rt.block_on(async {
+        let dial_start = Instant::now();
+        let sioClient = ClientBuilder::new(test_url)
+            .namespace("/admin")
+            .on("connect", |payload: Payload, socket: RawClient| {
+                let connect_duration = dial_start.elapsed();
+                println!("Connection established. Duration: {:?}", connect_duration);
+                Ok(());
+            })
+            .on("error", |err, _| eprintln!("Error: {:#?}", err))
+            .connect();
+
+        match sioClient {
+            Ok(sioClient) => {
+                let handshake_duration = dial_start.elapsed();
+                println!("Handshake completed. Duration: {:?}", handshake_duration); 
+            }
+            Err(err) => {
+                println!("Failed to establish a connection: {:?}", err);
+            }
+        }
+    });
+
+
+    // sleep(Duration::from_secs(2)).await;
 }
