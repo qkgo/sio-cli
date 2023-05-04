@@ -6,7 +6,7 @@
 This is a command-line interface (CLI) for testing the performance of a Socket.IO v4 server using the [rust-socketio](https://github.com/1c3t3a/rust-socketio) library. This tool measures the time taken for handshake dialing, onConnect connection, and returns the HTTP status code and header lists.
  
 ## Requirements
-- Server: Only Supported Socket.IO v4+
+- Server: Only Socket.IO v4+ is supported because rust-socketio is the only dependency and that's it.
 - libssl.3 is requried, Recommend ubuntu20+
 
 ## Todos
