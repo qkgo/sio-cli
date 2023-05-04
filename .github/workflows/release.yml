@@ -20,8 +20,11 @@ jobs:
         toolchain: stable
         override: true
 
+    - name: Install OpenSSL static libraries
+      run: sudo apt-get install -y libssl-dev
+
     - name: Build release
-      run: cargo build --release
+      run: OPENSSL_STATIC=1 cargo build --release
 
     - name: Check existing release
       id: check_release
