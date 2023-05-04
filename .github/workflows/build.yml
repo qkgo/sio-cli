@@ -18,9 +18,9 @@ jobs:
       with:
         profile: minimal
         # toolchain: stable
-        toolchain: 1.26.0
+        toolchain: 1.40.0
         override: true
-        
+
     - name: Get the ref name
       id: get_ref_name
       run: |
