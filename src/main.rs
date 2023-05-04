@@ -3,6 +3,7 @@ use std::time::Instant;
 use structopt::StructOpt;
 use tokio::runtime::Runtime;
 use std::time::Duration; 
+use tokio::time::sleep;
 
 
 #[derive(StructOpt, Debug)]
@@ -18,6 +19,7 @@ async fn main() {
     let test_url = opt.path;
 
   
+    let start_dial = Instant::now();
     let sio_client = ClientBuilder::new(test_url)
       .namespace("/")
       .on("connect", |payload: Payload, socket: RawClient| {
@@ -30,7 +32,7 @@ async fn main() {
  
   
 
-     sio_client.disconnect().expect("Disconnect failed")
+     sio_client.disconnect().expect("Disconnect failed");
 
 
      sleep(Duration::from_secs(25)).await; // 等待 2 秒以确保结果输出
