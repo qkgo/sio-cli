@@ -51,19 +51,7 @@ async fn main() {
         match sioClient {
             Ok(sioClient) => {
                 let handshake_duration = dial_start.elapsed();
-                println!("Handshake completed. Duration: {:?}", handshake_duration);
-
-                let http_status = sioClient.handshake().status;
-                let headers = sioClient.handshake().headers;
-
-                println!("HTTP Status Code: {}", http_status);
-                println!("Headers:");
-
-                for (key, value) in headers {
-                    println!("  {}: {}", key, value);
-                }
-
-                sioClient.disconnect().await.expect("Failed to disconnect");
+                println!("Handshake completed. Duration: {:?}", handshake_duration); 
             }
             Err(err) => {
                 println!("Failed to establish a connection: {:?}", err);
