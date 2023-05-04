@@ -24,6 +24,11 @@ async fn main() {
         let connect_duration = start_dial.elapsed().as_millis();
          println!("Connection established. Duration: {:?}", connect_duration);
       })
+      .on_any(|event, payload, _client| {
+        if let Payload::String(str) = payload {
+          println!("{} {}", String::from(event), str);
+        }
+      })
      .on("error", |err, _| eprintln!("Error: {:#?}", err))
      .connect()
      .expect("Connection failed");
