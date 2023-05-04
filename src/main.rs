@@ -24,7 +24,7 @@ async fn main() {
       .reconnect(true)
       .max_reconnect_attempts(100)
       .reconnect_delay(100, 100)
-      .transport_type(TransportType::Websocket)
+      // .transport_type(TransportType::Websocket)
       .namespace("/")
       
       .on(Event::Connect, move |_payload: Payload, _socket: RawClient| {
