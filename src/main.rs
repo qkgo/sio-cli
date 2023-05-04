@@ -8,8 +8,7 @@ use structopt::StructOpt;
 use tokio::runtime::Runtime;
 
 #[tokio::main]
-// async 
-fn main() {
+async fn main() {
     // 获取命令行参数
     let args: Vec<String> = env::args().collect();
     if args.len() < 2 {
