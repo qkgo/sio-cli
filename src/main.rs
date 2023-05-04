@@ -19,6 +19,7 @@ async fn main() {
 
     let start_dial = Instant::now();
     let sio_client = ClientBuilder::new(test_url)
+      .transport_type(TransportType::Websocket)
       .namespace("/")
       .on("connect", move  |_payload: Payload, _socket: RawClient| {
         let connect_duration = start_dial.elapsed().as_millis();
