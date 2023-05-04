@@ -14,7 +14,7 @@ struct Opt {
 
 
 // https://github.com/1c3t3a/rust-socketio/blob/cb107ba6770fabb109dce173b74ab36ebe039045/socketio/src/client/client.rs#L163
-#[tokio::main]
+// #[tokio::main]
 fn main() {
     let opt = Opt::from_args();
     let test_url = opt.path;
