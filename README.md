@@ -1,4 +1,4 @@
-# Rust Socket.IO Performance Test CLI 
+# SIO-CLI  ( Socket.IO Performance Test CLI )
 
 [![CI](https://github.com/qkgo/sio-cli/actions/workflows/build.yml/badge.svg)](https://github.com/qkgo/sio-cli/actions)
 [![GitHub release](https://img.shields.io/github/v/release/qkgo/sio-cli?include_prereleases)](https://github.com/qkgo/sio-cli/releases/latest)
