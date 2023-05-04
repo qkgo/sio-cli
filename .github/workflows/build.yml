@@ -1,0 +1,30 @@
+name: Rust Build
+
+on:
+  push:
+    branches: [main, master] # 根据您的默认分支名称选择一个
+  pull_request:
+    branches: [main, master] # 根据您的默认分支名称选择一个
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Install Rust
+      uses: actions-rs/toolchain@v1
+      with:
+        profile: minimal
+        toolchain: stable
+        override: true
+
+    - name: Build
+      uses: actions-rs/cargo@v1
+      with:
+        command: build
+        args: --release
+
+    - name: Display build size
+      run: du -sh target/release/socketio_perf_test
