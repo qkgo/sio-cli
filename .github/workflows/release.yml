@@ -37,7 +37,7 @@ jobs:
         draft: false
         prerelease: false
 
-
+# https://docs.github.com/en/actions/migrating-to-github-actions/automated-migrations/migrating-from-gitlab-with-github-actions-importer
     - name: Upload build artifact to release
       uses: actions/upload-release-asset@v1
       env:
@@ -45,7 +45,7 @@ jobs:
       with:
         upload_url: ${{ steps.create_release.outputs.result }}
         asset_path: ./target/release/rust_socketio_cli
-        asset_name: rust_socketio_cli_l
+        asset_name: rust_socketio_cli_${{ github.ref }}
         asset_content_type: application/octet-stream
 
 
