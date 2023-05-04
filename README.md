@@ -1,4 +1,7 @@
-# Rust Socket.IO Performance Test CLI
+# Rust Socket.IO Performance Test CLI 
+
+[![CI](https://github.com/qkgo/sio-cli/actions/workflows/build.yml/badge.svg)](https://github.com/qkgo/sio-cli/actions)
+
 
 This is a command-line interface (CLI) for testing the performance of a Socket.IO v4 server using the [rust-socketio](https://github.com/1c3t3a/rust-socketio) library. This tool measures the time taken for handshake dialing, onConnect connection, and returns the HTTP status code and header lists.
  
