@@ -15,7 +15,7 @@ struct Opt {
 
 // https://github.com/1c3t3a/rust-socketio/blob/cb107ba6770fabb109dce173b74ab36ebe039045/socketio/src/client/client.rs#L163
 #[tokio::main]
-async fn main() {
+fn main() {
     let opt = Opt::from_args();
     let test_url = opt.path;
 
@@ -59,6 +59,4 @@ async fn main() {
      .expect("Connection failed");
      
      sio_client.disconnect().expect("Disconnect failed");
-
-     sleep(Duration::from_secs(25)).await;
 }
