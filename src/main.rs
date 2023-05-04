@@ -37,7 +37,7 @@ async fn main() {
             .on("connect", |payload: Payload, socket: RawClient| {
                 let connect_duration = dial_start.elapsed();
                 println!("Connection established. Duration: {:?}", connect_duration);
-                Ok(());
+                Ok::<(), E>(());
             })
             .on("error", |err, _| eprintln!("Error: {:#?}", err))
             .connect();
