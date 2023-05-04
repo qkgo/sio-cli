@@ -19,6 +19,12 @@ jobs:
         profile: minimal
         toolchain: stable
         override: true
+        
+    - name: Get the ref name
+      id: get_ref_name
+      run: |
+        REF_NAME=$(echo "${{ github.ref }}" | sed -r 's/refs\/(heads|tags)\///')
+        echo "REF_NAME=${REF_NAME}" >> $GITHUB_ENV
 
     - name: Install OpenSSL static libraries
       run: sudo apt-get install -y libssl-dev

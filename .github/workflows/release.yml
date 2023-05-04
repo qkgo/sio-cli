@@ -20,6 +20,13 @@ jobs:
         toolchain: stable
         override: true
 
+        
+    - name: Get the ref name
+      id: get_ref_name
+      run: |
+        REF_NAME=$(echo "${{ github.ref }}" | sed -r 's/refs\/(heads|tags)\///')
+        echo "REF_NAME=${REF_NAME}" >> $GITHUB_ENV
+
     - name: Install OpenSSL static libraries
       run: sudo apt-get install -y libssl-dev
 
@@ -45,7 +52,7 @@ jobs:
       with:
         upload_url: ${{ steps.create_release.outputs.result }}
         asset_path: ./target/release/rust_socketio_cli
-        asset_name: rust_socketio_cli_${{ github.ref }}
+        asset_name: rust_socketio_cli_$REF_NAME
         asset_content_type: application/octet-stream
 
 
