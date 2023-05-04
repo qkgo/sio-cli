@@ -1,4 +1,4 @@
-use rust_socketio::{ClientBuilder, Payload, RawClient};
+use rust_socketio::{ClientBuilder, Payload, RawClient, TransportType};
 use std::time::Instant;
 use structopt::StructOpt;
 use std::time::Duration; 
