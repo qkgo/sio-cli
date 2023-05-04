@@ -22,7 +22,7 @@ async fn main() {
     let start_dial = Instant::now();
     let sio_client = ClientBuilder::new(test_url)
       .namespace("/")
-      .on("connect", |payload: Payload, socket: RawClient| {
+      .on("connect", move  |payload: Payload, socket: RawClient| {
         let connect_duration = start_dial.elapsed().as_millis();
          println!("Connection established. Duration: {:?}", connect_duration);
       })
