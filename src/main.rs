@@ -29,7 +29,7 @@ async fn main() {
     // let test_url = format!("{}{}", opt.domain, opt.test_path);
 
     let opt = Opt::from_args();
-    let url = opt.path;
+    let test_url = opt.path;
 
     let mut rt = Runtime::new().unwrap();
 
@@ -37,12 +37,13 @@ async fn main() {
     rt.block_on(async {
         let dial_start = Instant::now();
         let sioClient = ClientBuilder::new(test_url)
+            .namespace("/admin")
             .on("connect", |payload: Payload, socket: RawClient| {
                 let connect_duration = dial_start.elapsed();
                 println!("Connection established. Duration: {:?}", connect_duration);
                 Ok(());
             })
-            .on("error",  |payload, err| {
+            .on("error",  |err, _|  {
                 println!("Error: {}", err);
                 Ok(());
             })
