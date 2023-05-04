@@ -30,15 +30,15 @@ To run the performance test, use the following command, replacing <test_path> wi
 ```
 The CLI will output the handshake dialing time, onConnect connection time, HTTP status code, and header lists.
 
-GitHub Actions
+## GitHub Actions
 This repository includes a GitHub Actions workflow for automatically building the project on push and pull requests to the main or master branch (choose based on your default branch name). The workflow configuration can be found in the .github/workflows/build.yml file.
 
 When the workflow is triggered, you can view the build process under the "Actions" tab of your GitHub repository. After a successful build, the size of the build artifact will be displayed in the workflow logs.
 
-License
+## License
 This project is licensed under the MIT License.
 
-Refs:
+## Refs:
 - https://github.com/rlespinasse/github-slug-action/blob/v4.x/examples/linux-usage.yml
 - https://docs.rs/rust_socketio/latest/rust_socketio/client/struct.ClientBuilder.html#method.max_reconnect_attempts
 - https://docs.github.com/en/actions/migrating-to-github-actions/automated-migrations/migrating-from-gitlab-with-github-actions-importer
