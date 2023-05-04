@@ -43,7 +43,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        upload_url: ${{ steps.check_release.outputs.result }}
+        upload_url: ${{ steps.create_release.outputs.result }}
         asset_path: ./target/release/rust_socketio_cli
         asset_name: rust_socketio_cli_l
         asset_content_type: application/octet-stream
