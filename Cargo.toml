@@ -6,11 +6,7 @@ edition = "2018"
 [dependencies]
 rust_socketio = { git = "https://github.com/1c3t3a/rust-socketio.git", branch = "main" }
 tokio = { version = "1.0", features = ["full"] }
-# serde = { version = "1.0", features = ["derive"] }
-# serde_json = "1.0"
-# anyhow = "1.0"
 structopt = "0.3"
-
 
 [[bin]]
 name = "rust_socketio_cli"
