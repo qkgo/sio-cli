@@ -23,7 +23,7 @@ async fn main() {
     let sio_client = ClientBuilder::new(test_url)
       .namespace("/")
       .on("connect", |payload: Payload, socket: RawClient| {
-         let connect_duration = dial_start.elapsed();
+        let connect_duration = start_dial.elapsed().as_millis();
          println!("Connection established. Duration: {:?}", connect_duration);
       })
      .on("error", |err, _| eprintln!("Error: {:#?}", err))
