@@ -36,25 +36,25 @@ async fn main() {
     // test_url.as_str()
     rt.block_on(async {
         let dial_start = Instant::now();
-        let socket = SocketBuilder::new(test_url)
+        let sioClient = ClientBuilder::new(test_url)
             .on("connect", |payload: Payload, socket: RawClient| {
                 let connect_duration = dial_start.elapsed();
                 println!("Connection established. Duration: {:?}", connect_duration);
                 Ok(());
             })
-            .on("error",  |err, _| {
-                println!("Error: {}", err);
+            .on("error",  |payload, err| {
+                println!("Error: {:#?}", err);
                 Ok(());
             })
             .connect();
 
-        match socket {
-            Ok(socket) => {
+        match sioClient {
+            Ok(sioClient) => {
                 let handshake_duration = dial_start.elapsed();
                 println!("Handshake completed. Duration: {:?}", handshake_duration);
 
-                let http_status = socket.http_status().unwrap_or(0);
-                let headers = socket.http_headers();
+                let http_status = sioClient.http_status().unwrap_or(0);
+                let headers = sioClient.http_headers();
 
                 println!("HTTP Status Code: {}", http_status);
                 println!("Headers:");
@@ -63,7 +63,7 @@ async fn main() {
                     println!("  {}: {}", key, value);
                 }
 
-                socket.disconnect().await.expect("Failed to disconnect");
+                sioClient.disconnect().await.expect("Failed to disconnect");
             }
             Err(err) => {
                 println!("Failed to establish a connection: {:?}", err);
