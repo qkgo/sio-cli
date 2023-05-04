@@ -4,7 +4,7 @@ version = "0.1.0"
 edition = "2018"
 
 [dependencies]
-rust_socketio = { git = "https://github.com/1c3t3a/rust-socketio.git", tag = "v0.4.1" }
+rust_socketio = "0.4.1"
 tokio = { version = "1.0", features = ["full"] }
 structopt = "0.3"
 
