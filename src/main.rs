@@ -43,7 +43,7 @@ async fn main() {
                 Ok(());
             })
             .on("error",  |payload, err| {
-                println!("Error: {:#?}", err);
+                println!("Error: {}", err);
                 Ok(());
             })
             .connect();
@@ -53,8 +53,8 @@ async fn main() {
                 let handshake_duration = dial_start.elapsed();
                 println!("Handshake completed. Duration: {:?}", handshake_duration);
 
-                let http_status = sioClient.http_status().unwrap_or(0);
-                let headers = sioClient.http_headers();
+                let http_status = sioClient.handshake().status;
+                let headers = sioClient.handshake().headers;
 
                 println!("HTTP Status Code: {}", http_status);
                 println!("Headers:");
