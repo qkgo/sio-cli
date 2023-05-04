@@ -13,9 +13,9 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Setting Environment 
+    - name: Inject slug/short variables
       uses: rlespinasse/github-slug-action@v4
-
+    
     - name: Setup Rust
       uses: actions-rs/toolchain@v1
       with:
@@ -36,8 +36,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: ${env.GITHUB_REF_SLUG}
-        release_name: Release ${env.GITHUB_REF_SLUG}
+        tag_name: ${{ env.GITHUB_REF_SLUG }}
+        release_name: Release ${{ env.GITHUB_REF_SLUG }}
         draft: false
         prerelease: false
 
@@ -50,7 +50,7 @@ jobs:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
 #        upload_url: ${{ steps.create_release.outputs.result }}
         asset_path: ./target/release/rust_socketio_cli
-        asset_name: rust_socketio_cli_${env.GITHUB_REF_SLUG}
+        asset_name: rust_socketio_cli_${{ env.GITHUB_REF_SLUG }}
         asset_content_type: application/octet-stream
 
 
