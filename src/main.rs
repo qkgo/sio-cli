@@ -1,4 +1,4 @@
-use rust_socketio::{ClientBuilder, Payload, RawClient};
+use rust_socketio::{SocketBuilder, ClientBuilder, Payload, RawClient};
 use serde_json::json;
 use std::env;
 use std::time::Instant;
@@ -20,7 +20,7 @@ async fn main() {
     // let opt = Opt::from_args();
     // let test_url = format!("{}{}", opt.domain, opt.test_path);
 
-    // let mut rt = Runtime::new().unwrap();
+    let mut rt = Runtime::new().unwrap();
 
     // test_url.as_str()
     rt.block_on(async {
