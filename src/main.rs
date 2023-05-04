@@ -25,17 +25,16 @@ async fn main() {
     rt.block_on(async {
         let dial_start = Instant::now();
         let socket = SocketBuilder::new(test_url)
-            .on("connect", |_| {
+            .on("connect", |payload: Payload, socket: RawClient| {
                 let connect_duration = dial_start.elapsed();
                 println!("Connection established. Duration: {:?}", connect_duration);
                 Ok(())
             })
-            .on("error", |err| {
+            .on("error",  |err, _| {
                 println!("Error: {}", err);
                 Ok(())
             })
-            .connect()
-            .await;
+            .connect();
 
         match socket {
             Ok(socket) => {
