@@ -35,3 +35,9 @@ When the workflow is triggered, you can view the build process under the "Action
 
 License
 This project is licensed under the MIT License.
+
+Refs:
+- https://github.com/rlespinasse/github-slug-action/blob/v4.x/examples/linux-usage.yml
+- https://docs.rs/rust_socketio/latest/rust_socketio/client/struct.ClientBuilder.html#method.max_reconnect_attempts
+- https://docs.github.com/en/actions/migrating-to-github-actions/automated-migrations/migrating-from-gitlab-with-github-actions-importer
+- https://docs.gitlab.com/ee/ci/variables/predefined_variables.html
