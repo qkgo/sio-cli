@@ -2,9 +2,9 @@ name: Rust Build
 
 on:
   push:
-    branches: [main, master] # 根据您的默认分支名称选择一个
+    branches: [main, master]
   pull_request:
-    branches: [main, master] # 根据您的默认分支名称选择一个
+    branches: [main, master]
 
 jobs:
   build:
@@ -20,11 +20,15 @@ jobs:
         toolchain: stable
         override: true
 
+    - name: Install OpenSSL static libraries
+      run: sudo apt-get install -y libssl-dev
+
     - name: Build
-      uses: actions-rs/cargo@v1
-      with:
-        command: build
-        args: --release
+      run: OPENSSL_STATIC=1 cargo build --release
+#      uses: actions-rs/cargo@v1
+#      with:
+#       command: build
+#       args: --release
 
     - name: Display build size
       run: du -sh target/release/rust_socketio_cli
