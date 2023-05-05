@@ -14,7 +14,7 @@ Returns the time taken for handshake dialin and http status code and header list
 
 ## Prerequisites
 
-- [Rust](https://www.rust-lang.org/tools/install) (latest stable version)
+- [Rust](https://www.rust-lang.org/tools/install) (v1.69.0)
 
 ## Building the CLI
 
@@ -23,7 +23,7 @@ To build the CLI, simply run:
 ```sh
 cargo build --release
 ```
-This will create the socketio_perf_test binary in the target/release directory.
+This will create the execution binary in the target/release directory.
 
 Usage
 To run the performance test, use the following command, replacing <test_path> with the path to your test server:
