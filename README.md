@@ -29,7 +29,7 @@ Usage
 To run the performance test, use the following command, replacing <test_path> with the path to your test server:
 
 ```sh
-./target/release/rust_socketio_cli <test_path>
+./target/release/sio_cli <test_path>
 ```
 The CLI will output the handshake dialing time, onConnect connection time, HTTP status code, and header lists.
 
